@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Left Side Navigation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    #sidebar {
+      background-color: #f1f1f1;
+      float: left;
+      width: 200px;
+      height: 100vh;
+    }
+
+    #sidebar ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #sidebar li {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    #content {
+      margin-left: 200px;
+      padding: 20px;
+    }
+  </style>
+  <script>
+    // Wait for the DOM to be fully loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      // Get the sidebar items
+      var sidebarItems = document.querySelectorAll("#sidebar li");
+
+      // Attach click event listeners to each sidebar item
+      sidebarItems.forEach(function(item) {
+        item.addEventListener("click", function() {
+          // Get the selected item's text
+          var selectedItem = this.innerText;
+
+          // Call the function to update the content based on the selected item
+          updateContent(selectedItem);
+        });
+      });
+
+      // Function to update the content based on the selected item
+      function updateContent(selectedItem) {
+        var contentElement = document.getElementById("content");
+
+        // Clear the existing content
+        contentElement.innerHTML = "";
+
+        // Create and append new content based on the selected item
+        var newContent = document.createElement("div");
+        newContent.className = "content-item";
+
+        if (selectedItem === "Home") {
+          newContent.innerHTML = "<h1>Welcome to the Home Page</h1><p>This is the home page content.</p>";
+        } else if (selectedItem === "Contact") {
+          newContent.innerHTML = "<h1>Contact Information</h1><p>Here's the contact information.</p>";
+        } else if (selectedItem === "Information") {
+          newContent.innerHTML = "<h1>Information Section</h1><p>This is the information section.</p>";
+        } else if (selectedItem === "Guide") {
+          newContent.innerHTML = "<h1>User Guide</h1><p>Here's the user guide.</p>";
+        } else {
+          newContent.innerHTML = "<h1>Page Not Found</h1><p>The requested page was not found.</p>";
+        }
+
+        contentElement.appendChild(newContent);
+      }
+    });
+  </script>
+</head>
+<body>
+  <div id="sidebar">
+    <ul>
+      <li>Home</li>
+      <li>Contact</li>
+      <li>Information</li>
+      <li>Guide</li>
+    </ul>
+  </div>
+  <div id="content">
+    <!-- Content will be dynamically updated here -->
+  </div>
+</body>
+</html>
